@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+
+.registration-form {
+            background: linear-gradient(to bottom right, rgb(241, 241, 112), rgb(246, 145, 250));
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto; 
+            padding: 10px;
+            font-size: 18px;
+        }
+        .gender-label {
+            margin-right: 10px;
+        }
+
+        .declare-label {
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        #register-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 20px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .login-text {
+            float: left;
+            clear: both; 
+        }
+        #address {
+        vertical-align: middle; 
+    }
+    </style>
+</head>
+<body>
+    <centre>
+    <form class="registration-form" action="https://ethnus.com/">
+        <h2>Registration Form</h2>
+        <label for="first-name">First Name:</label>
+<input type="text" id="first-name" placeholder="First Name" required>
+<span id="first-name-message">No Strength</span><br><br>
+        
+<label for="last-name">Last Name:</label>
+<input type="text" id="last-name" placeholder="Last Name" required>
+<span id="last-name-message">No Strength</span><br><br>
+        
+<label for="email">Email:</label>
+<input type="email" id="email" placeholder="Email" required>
+<span id="email-message">No Strength</span><br><br>
+
+<label for="password">Password:</label>
+<input type="password" id="password" placeholder="Password" required onkeyup="checkPasswordStrength()">
+<span id="password-strength">No Strength</span><br><br>
+        
+<label for="reenter-password">Re-enter Password:</label>
+<input type="password" id="reenter-password" placeholder="Re-enter Password" required onkeyup="checkPasswordMatch()">
+<span id="password-match">No Strength</span><br><br>
+        
+        <label class="gender-label">Gender:</label>
+        <input type="radio" name="gender" value="Male"> Male
+        <input type="radio" name="gender" value="Female"> Female
+        <input type="radio" name="gender" value="Other"> Other<br><br>
+        
+        <label>Age:</label>
+        <input type="number" id="age" placeholder="Age" required onkeyup="checkAge()">
+        <span id="age-message">No Strength</span><br><br>
+        
+        
+        <label>Phone Number:</label>
+        <input type="tel" id="phone-number" placeholder="Phone Number" required onkeyup="checkPhoneNumber()">
+        <span id="phone-number-message">No Strength</span><br><br>
+        
+        <label>Address:</label>
+        <textarea placeholder="Address" id="address" rows="5" cols="50" required onkeyup="checkAddress()"></textarea>
+        <span id="address-message">No Strength</span><br><br>
+
+        
+        <label>State:</label>
+        <input type="text" id="state" placeholder="State" required onkeyup="checkState()">
+        <span id="state-message">No Strength</span><br><br>
+        
+        <label>Country:</label>
+        <select>
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="Iran">India</option>
+            <option value="Switzerland">USA</option>
+            <option value="Finland">India</option>
+            <option value="Canada">USA</option>
+            <option value="Russia">India</option>
+            <option value="Italy">USA</option>
+            
+        </select><br><br>
+        
+        <label>Languages:</label>
+        <input type="checkbox" name="languages" value="English"> English
+        <input type="checkbox" name="languages" value="Kannada"> Kannada
+        <input type="checkbox" name="languages" value="Hindi"> Hindi
+        <input type="checkbox" name="languages" value="Telugu"> Telugu<br><br>
+        
+        <input type="checkbox" id="declare-checkbox" disabled>
+<label class="declare-label" for="declare-checkbox">Hereby I declare all the given details are true.</label><br><br>
+        <p>Log in to <a href="https://ethnus.com/">Ethnus </a>website </p>
+        <button id="register-button" disabled>Register</button><br><br>
+    </form>
+
+    <script>
+        document.getElementById("first-name-message").innerText = "No Strength";
+        document.getElementById("last-name-message").innerText = "No Strength";
+        document.getElementById("email-message").innerText = "No Strength";
+        document.getElementById("password-strength").innerText = "No Strength";
+        document.getElementById("password-match").innerText = "No Strength";
+        document.getElementById("age-message").innerText = "No Strength";
+        document.getElementById("phone-number-message").innerText = "No Strength";
+        document.getElementById("address-message").innerText = "No Strength";
+        document.getElementById("state-message").innerText = "No Strength";
+
+
+        document.getElementById("first-name").addEventListener('input', checkName);
+        document.getElementById("last-name").addEventListener('input', checkLastName);
+        document.getElementById("email").addEventListener('input', checkEmail);
+        document.getElementById("password").addEventListener('input', checkPasswordStrength);
+        document.getElementById("reenter-password").addEventListener('input', checkPasswordMatch);
+        document.getElementById("age").addEventListener('input', checkAge);
+        document.getElementById("phone-number").addEventListener('input', checkPhoneNumber);
+        document.getElementById("address").addEventListener('input', checkAddress);
+        document.getElementById("state").addEventListener('input', checkState);
+    
+        function checkName() {
+            var firstName = document.getElementById("first-name").value;
+            var firstNameMessage = document.getElementById("first-name-message");
+    
+            if (firstName.length > 7) {
+                firstNameMessage.innerHTML = "Good";
+                firstNameMessage.style.color = "green";
+            } else {
+                firstNameMessage.innerHTML = "Poor";
+                firstNameMessage.style.color = "red";
+            }
+        }
+    
+        function checkLastName() {
+            var lastName = document.getElementById("last-name").value;
+            var lastNameMessage = document.getElementById("last-name-message");
+    
+            if (lastName.length > 7) {
+                lastNameMessage.innerHTML = "Good";
+                lastNameMessage.style.color = "green";
+            } else {
+                lastNameMessage.innerHTML = "Poor";
+                lastNameMessage.style.color = "red";
+            }
+        }
+    
+        function checkEmail() {
+            var email = document.getElementById("email").value;
+            var emailMessage = document.getElementById("email-message");
+    
+           
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (emailPattern.test(email)) {
+                emailMessage.innerHTML = "Good";
+                emailMessage.style.color = "green";
+            } else {
+                emailMessage.innerHTML = "Poor";
+                emailMessage.style.color = "red";
+            }
+        }
+        function checkPasswordStrength() {
+        var password = document.getElementById("password").value;
+        var strength = document.getElementById("password-strength");
+
+        if (password.length === 0) {
+            strength.innerHTML = "No Strength";
+        } else if (password.length < 5) {
+            strength.innerHTML = "Poor";
+            strength.style.color = "red";
+        } else {
+            strength.innerHTML = "Good";
+            strength.style.color = "green";
+        }
+    }
+
+    function checkPasswordMatch() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("reenter-password").value;
+        var matchMessage = document.getElementById("password-match");
+
+        if (password === confirmPassword && password.length >= 5) {
+            matchMessage.innerHTML = "Passwords Match";
+            matchMessage.style.color = "green";
+        } else {
+            matchMessage.innerHTML = "Poor or Mismatch";
+            matchMessage.style.color = "red";
+        }
+    }
+    function checkAge() {
+        var age = document.getElementById("age").value;
+        var ageMessage = document.getElementById("age-message");
+
+        if (age >= 13) { 
+            ageMessage.innerHTML = "Good";
+            ageMessage.style.color = "green";
+        } else {
+            ageMessage.innerHTML = "Poor (Age must be greater than 12)";
+            ageMessage.style.color = "red";
+        }
+    }
+    
+    function checkPhoneNumber() {
+        var phoneNumber = document.getElementById("phone-number").value;
+        var phoneMessage = document.getElementById("phone-number-message");
+
+        
+        if (/^\d{10}$/.test(phoneNumber)) {
+            phoneMessage.innerHTML = "Good";
+            phoneMessage.style.color = "green";
+        } else {
+            phoneMessage.innerHTML = "Poor ";
+            phoneMessage.style.color = "red";
+        }
+    }
+    
+    function checkAddress() {
+        var address = document.getElementById("address").value;
+        var addressMessage = document.getElementById("address-message");
+
+       
+        if (/^[a-zA-Z0-9\s, -]+$/.test(address) && address.length >= 5) {
+            addressMessage.innerHTML = "Good";
+            addressMessage.style.color = "green";
+        } else {
+            addressMessage.innerHTML = "Poor ";
+            addressMessage.style.color = "red";
+        }
+    }
+    function checkState() {
+        var state = document.getElementById("state").value;
+        var stateMessage = document.getElementById("state-message");
+
+        if (state.trim() !== "" && state.length >= 3) {
+            stateMessage.innerHTML = "Good";
+            stateMessage.style.color = "green";
+        } else {
+            stateMessage.innerHTML = "Poor ";
+            stateMessage.style.color = "red";
+        }
+    }
+    document.getElementById("first-name").addEventListener('input', checkForm);
+    document.getElementById("last-name").addEventListener('input', checkForm);
+    document.getElementById("email").addEventListener('input', checkForm);
+    document.getElementById("password").addEventListener('input', checkForm);
+    document.getElementById("reenter-password").addEventListener('input', checkForm);
+    document.getElementById("gender").addEventListener('change', checkForm);
+    document.getElementById("age").addEventListener('input', checkForm);
+    document.getElementById("phone-number").addEventListener('input', checkForm);
+    document.getElementById("address").addEventListener('input', checkForm);
+    document.getElementById("state").addEventListener('input', checkForm);
+
+  
+    document.getElementById("register-button").addEventListener('click', function (e) {
+        if (!isFormValid()) {
+            e.preventDefault();
+            alert("Please fill out the entire form before proceeding.");
+        } else {
+            window.location.href = "https://ethnus.com/";
+        }
+    });
+
+    function checkForm() {
+        if (isFormValid()) {
+            document.getElementById("declare-checkbox").disabled = false;
+        } else {
+            document.getElementById("declare-checkbox").disabled = true;
+        }
+    }
+
+    function isFormValid() {
+        var firstName = document.getElementById("first-name").value;
+        var lastName = document.getElementById("last-name").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var reenterPassword = document.getElementById("reenter-password").value;
+        var gender = document.querySelector('input[name="gender"]:checked');
+        var age = document.getElementById("age").value;
+        var phoneNumber = document.getElementById("phone-number").value;
+        var address = document.getElementById("address").value;
+        var state = document.getElementById("state").value;
+
+       
+        if (
+            firstName.trim() !== "" &&
+            lastName.trim() !== "" &&
+            email.trim() !== "" &&
+            password.trim() !== "" &&
+            reenterPassword.trim() !== "" &&
+            gender !== null &&
+            age.trim() !== "" &&
+            phoneNumber.trim() !== "" &&
+            address.trim() !== "" &&
+            state.trim() !== ""
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    </script>
+     </centre>
+    </body>
+</html>
